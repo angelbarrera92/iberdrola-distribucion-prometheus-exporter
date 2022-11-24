@@ -1,4 +1,6 @@
+.vscode
 venv
 __pycache__/
 *.py[cod]
 *$py.class
+super-linter.log

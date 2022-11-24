@@ -1,3 +1,4 @@
+# hadolint ignore=DL3007
 FROM cgr.dev/chainguard/python:latest
 
 # Set the working directory to /app

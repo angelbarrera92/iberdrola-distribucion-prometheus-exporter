@@ -5,17 +5,17 @@ TODO: Write a project description
 ## Development
 
 ```bash
-$ git clone git@github.com:angelbarrera92/iberdrola-distribucion-prometheus-exporter.git
-$ cd iberdrola-distribucion-prometheus-exporter
-$ virtualenv -p python3 venv
-$ source venv/bin/activate
-$ pip install -r requirements-dev.txt
+git clone git@github.com:angelbarrera92/iberdrola-distribucion-prometheus-exporter.git
+cd iberdrola-distribucion-prometheus-exporter
+virtualenv -p python3 venv
+source venv/bin/activate
+pip install -r requirements-dev.txt
 ```
 
 ## Building
 
 ```bash
-$ docker build -t iberdrola-distribucion-prometheus-exporter:local -f build/container/Dockerfile .
+docker build -t iberdrola-distribucion-prometheus-exporter:local -f build/container/Dockerfile .
 ```
 
 ## Using
@@ -24,11 +24,19 @@ $ docker build -t iberdrola-distribucion-prometheus-exporter:local -f build/cont
 $ docker run --rm iberdrola-distribucion-prometheus-exporter:local
 usage: main.py [-h] [-s SERVER] [-P PORT] -u USERNAME -p PASSWORD [-v]
 main.py: error: the following arguments are required: -u/--username, -p/--password
-$ docker run -d -p 9988:9988 iberdrola-distribucion-prometheus-exporter:local -u YOUR_USERNAME_GOES_HERE -p YOUR_PASSWORD_GOES_HERE --verbose
+$ docker run -p 9988:9988 iberdrola-distribucion-prometheus-exporter:local -u YOUR_USERNAME_GOES_HERE -p YOUR_PASSWORD_GOES_HERE --verbose
+INFO:root:Verbose mode enabled
+INFO:root:Exporter server: 0.0.0.0:9988
+INFO:root:i-de username: YOUR_USERNAME_GOES_HERE
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.i-de.es:443
+DEBUG:urllib3.connectionpool:https://www.i-de.es:443 "POST /consumidores/rest/loginNew/login HTTP/1.1" 200 343
+DEBUG:root:Logged in
+INFO:root:Starting exporter server
+DEBUG:urllib3.connectionpool:https://www.i-de.es:443 "GET /consumidores/rest/escenarioNew/obtenerMedicionOnline/24 HTTP/1.1" 200 None
 ```
 
 ```bash
-curl http://localhost:9988/metrics
+$ curl http://localhost:9988/metrics
 # HELP python_gc_objects_collected_total Objects collected during gc
 # TYPE python_gc_objects_collected_total counter
 python_gc_objects_collected_total{generation="0"} 394.0

@@ -1,14 +1,13 @@
 import argparse
+import logging
 import time
 
 from oligo import Iber
 from oligo.exception import IberException
 from prometheus_client import Gauge, start_http_server
-import logging
 
 
-class IberdrolaDistribucionMetrics():
-
+class IberdrolaDistribucionMetrics:
     def __init__(self, username, password) -> None:
         # Iberdrola Client
         self.conn = Iber()
@@ -19,9 +18,11 @@ class IberdrolaDistribucionMetrics():
         self.polling_interval_seconds = 100
         # Prometheus metrics
         self.consumption = Gauge(
-            "iberdrola_distribucion_consumption", "Current consumption in watts")
+            "iberdrola_distribucion_consumption", "Current consumption in watts"
+        )
         self.meter_total = Gauge(
-            "iberdrola_distribucion_meter_total", "Total consumption in kWh")
+            "iberdrola_distribucion_meter_total", "Total consumption in kWh"
+        )
 
     def run_metrics_loop(self):
         while True:
@@ -47,19 +48,24 @@ class IberdrolaDistribucionMetrics():
                 logging.debug("Error fetching data, retrying in 10 seconds")
                 time.sleep(10)
 
+
 def main():
     parser = argparse.ArgumentParser(
-        description="Iberdrola Distribucion Prometheus exporter")
+        description="Iberdrola Distribucion Prometheus exporter"
+    )
     parser.add_argument(
-        "-s", "--server", help="Exporter server address", required=False, default="0.0.0.0")
+        "-s",
+        "--server",
+        help="Exporter server address",
+        required=False,
+        default="0.0.0.0",
+    )
     parser.add_argument(
-        "-P", "--port", help="Exporter server port", required=False, default=9988)
-    parser.add_argument("-u", "--username",
-                        help="i-de username", required=True)
-    parser.add_argument("-p", "--password",
-                        help="i-de password", required=True)
-    parser.add_argument("-v", "--verbose",
-                        help="Verbose mode", action="store_true")
+        "-P", "--port", help="Exporter server port", required=False, default=9988
+    )
+    parser.add_argument("-u", "--username", help="i-de username", required=True)
+    parser.add_argument("-p", "--password", help="i-de password", required=True)
+    parser.add_argument("-v", "--verbose", help="Verbose mode", action="store_true")
     args = vars(parser.parse_args())
 
     if args["verbose"]:
