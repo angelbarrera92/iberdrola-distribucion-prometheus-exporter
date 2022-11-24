@@ -42,7 +42,10 @@ class IberdrolaDistribucionMetrics():
             except IberException:
                 logging.debug("Error fetching data, retrying in 3 seconds")
                 time.sleep(3)
-
+            except Exception as e:
+                logging.error("Error fetching data: %s", e)
+                logging.debug("Error fetching data, retrying in 10 seconds")
+                time.sleep(10)
 
 def main():
     parser = argparse.ArgumentParser(
