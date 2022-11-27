@@ -1,6 +1,7 @@
 # Iberdrola distribución - Prometheus Exporter
 
-TODO: Write a project description
+Prometheus exporter for Iberdrola distribución.
+It provides current consumption data and the total consumption for the meter.
 
 ## Development
 
@@ -80,3 +81,7 @@ iberdrola_distribucion_consumption 100.0
 # TYPE iberdrola_distribucion_meter_total gauge
 iberdrola_distribucion_meter_total 16051.0
 ```
+
+## License
+
+[MIT](LICENSE)
