@@ -81,7 +81,7 @@ def main():
     # Server address and port
     idm = IberdrolaDistribucionMetrics(args["username"], args["password"])
     logging.info("Starting exporter server")
-    start_http_server(addr=args["server"], port=args["port"])
+    start_http_server(addr=args["server"], port=int(args["port"]))
     idm.run_metrics_loop()
 
 
