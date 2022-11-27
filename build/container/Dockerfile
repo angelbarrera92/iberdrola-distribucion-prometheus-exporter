@@ -1,8 +1,8 @@
 # hadolint ignore=DL3007
 FROM cgr.dev/chainguard/python:latest
 
-# Set the working directory to /app
-WORKDIR /app
+# Set the working directory to /home/nonroot
+WORKDIR /home/nonroot
 
 # Setup the virtual environment
 RUN ["/usr/bin/python3", "-m" , "venv", "--upgrade-deps", ".venv"]
