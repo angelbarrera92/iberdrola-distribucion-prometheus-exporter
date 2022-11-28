@@ -13,10 +13,24 @@ source venv/bin/activate
 pip install -r requirements-dev.txt
 ```
 
+### Linting
+
+This requires `docker`. It uses the same linter as the CI.
+
+```bash
+make lint
+```
+
 ## Building
 
 ```bash
 docker build -t iberdrola-distribucion-prometheus-exporter:local -f build/container/Dockerfile .
+```
+
+or
+
+```bash
+make build-local
 ```
 
 ## Using
@@ -81,6 +95,21 @@ iberdrola_distribucion_consumption 100.0
 # TYPE iberdrola_distribucion_meter_total gauge
 iberdrola_distribucion_meter_total 16051.0
 ```
+
+## Prometheus configuration
+
+```yaml
+scrape_configs:
+  - job_name: 'iberdrola_distribucion'
+    static_configs:
+      - targets: ['localhost:9988']
+```
+
+## Grafana Dashboard
+
+To facilitate the use of this exporter, a [Grafana dashboard](dashboard.json) is provided.
+
+![Grafana Dashboard](dashboard.png)
 
 ## License
 
