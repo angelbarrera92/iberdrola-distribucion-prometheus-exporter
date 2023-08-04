@@ -13,14 +13,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build and publish the container image for ${{ github.repository }}:${{ github.ref_name }}
-        uses: macbre/push-to-ghcr@v12
+        uses: macbre/push-to-ghcr@v13
         with:
           image_name: ${{ github.repository }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: build/container/Dockerfile
           image_tag:  ${{ github.ref_name }}
       - name: Build and publish the container image for ${{ github.repository }}:latest
-        uses: macbre/push-to-ghcr@v12
+        uses: macbre/push-to-ghcr@v13
         with:
           image_name: ${{ github.repository }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
