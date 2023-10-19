@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Build and publish the container image for ${{ github.repository }}:${{ github.ref_name }}
         uses: macbre/push-to-ghcr@v12
         with:
