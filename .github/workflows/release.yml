@@ -27,7 +27,7 @@ jobs:
           dockerfile: build/container/Dockerfile
           image_tag: latest
       - name: Create a Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
