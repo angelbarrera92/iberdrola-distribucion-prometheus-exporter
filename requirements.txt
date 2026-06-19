@@ -1,2 +1,2 @@
-oligo[requests]==2.1.1
+oligo[requests]==2.2.0
 prometheus_client==0.15.0
